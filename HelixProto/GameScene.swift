@@ -8,8 +8,10 @@
 
 import SpriteKit
 import GameplayKit
+import AudioKit
 
 class GameScene: SKScene {
+    
     private var background = SKSpriteNode(imageNamed: "background")
     // The parts represent the individual pieces of the DNA. Each part can hold a tone.
     private var parts: [SKSpriteNode] = []
@@ -17,6 +19,8 @@ class GameScene: SKScene {
     private var bases: [Int:SKSpriteNode] = [:]
     // All the bases that were assigned to the DNA
     private var basesOnDna: [SKSpriteNode] = []
+    // All DNA parts are listed here with according bases
+    private var BasesByParts: [(SKSpriteNode, SKSpriteNode?)] = []
     
     // For dragging bases
     private let panRecognizer = UIPanGestureRecognizer()
@@ -25,13 +29,23 @@ class GameScene: SKScene {
     private var originalBasePosition: CGPoint?
     
     
+    var piano1 = AKMIDISampler()
+    var piano2 = AKMIDISampler()
+    var piano3 = AKMIDISampler()
+    var piano4 = AKMIDISampler()
+    
+    var bell = AKMIDISampler()
+    var sequencer = AKSequencer(filename: "4tracks")
+    
     override init(size: CGSize) {
         // Create the one side of the DNA string.
-        for _ in 0...12 {
+        for index in 0...11 {
             let part = SKSpriteNode(imageNamed: "stridepart")
             part.zPosition = 0
             part.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             parts.append(part)
+            BasesByParts.append((part, nil))
+            
         }
         
         // Create the 4 bases available for the user
@@ -49,6 +63,7 @@ class GameScene: SKScene {
     
     // Initial setup
     override func didMove(to view: SKView) {
+        
         // Create background
         backgroundColor = SKColor.black
         background.zPosition = -1
@@ -71,18 +86,28 @@ class GameScene: SKScene {
             addChild(base)
             base.anchorPoint = CGPoint(x: 0, y: 0.5)
             base.zPosition = 1
+            base.name = "tone\(index+1)"
             let overallHeight = base.frame.size.height * CGFloat(bases.count)
             base.position = CGPoint(x: self.frame.size.width / 1.68, y: (self.frame.size.height / 2) + (overallHeight / 2) - (base.frame.size.height * 2 * CGFloat(index)))
         }
         
+        let playButton = SKSpriteNode(imageNamed: "playButton")
+        playButton.name = "playButton"
+        addChild(playButton)
+        playButton.zPosition = 99
+        playButton.position = CGPoint(x: self.frame.size.width / 1.58, y: self.frame.size.height / 7.7)
+        playButton.scale(to: CGSize(width: playButton.size.width * CGFloat(1.5), height: playButton.size.height * CGFloat(1.5)))
+        
         panRecognizer.addTarget(self, action: #selector(GameScene.drag(_:)))
         self.view!.addGestureRecognizer(panRecognizer)
+        
+        setupAudio()
         
     }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        
+
     }
     
     // Gets called by the UIPanGestureRecognizer.
@@ -106,6 +131,11 @@ class GameScene: SKScene {
                     if nearest.position.x.distance(to: currentBase.position.x) < 100 {
                         currentBase.position = CGPoint(x: nearest.position.x + currentBase.frame.width / 24, y: nearest.position.y)
                         basesOnDna.append(currentBase)
+                        for (index, tuple) in BasesByParts.enumerated() {
+                            if tuple.0 == nearest {
+                                BasesByParts[index] = (nearest, currentBase)
+                            }
+                        }
                         // Get next base of same type
                         reloadSample(for: currentBase)
                         return
@@ -128,6 +158,20 @@ class GameScene: SKScene {
             let nodes = self.nodes(at: location)
             if nodes.first is SKSpriteNode {
                 let node = nodes.first as! SKSpriteNode
+                if let name = node.name {
+                    if name == "playButton" {
+                        node.playPressedAnimation()
+                        node.name = "stopButton"
+                        updateLoop()
+                        sequencer.play()
+                    }
+                    else if name == "stopButton"{
+
+                        node.playPressedAnimation()
+                        node.name = "playButton"
+                        sequencer.stop()
+                    }
+                }
                 if bases.values.contains(node) || basesOnDna.contains(node){
                     originalBasePosition = node.position
                     currentBase = node
@@ -175,6 +219,7 @@ class GameScene: SKScene {
                 newBase = SKSpriteNode(imageNamed: "base1")
             }
             bases[position] = newBase
+            newBase.name = "tone\(position+1)"
             addChild(newBase)
             newBase.anchorPoint = CGPoint(x: 0, y: 0.5)
             newBase.zPosition = 1
@@ -184,6 +229,60 @@ class GameScene: SKScene {
             
             let appear = SKAction.move(to: finalPos, duration: 0.5)
             newBase.run(appear)
+        }
+    }
+    
+    private func setupAudio() {
+        
+        // Load wav files into samplers
+        do {
+            try piano1.loadWav("FM Piano")
+            try piano2.loadWav("FM Piano")
+            try piano3.loadWav("FM Piano")
+            try piano4.loadWav("FM Piano")
+            try bell.loadWav("Bell")
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        let mixer = AKMixer(piano1, piano2, piano3, piano4, bell)
+        AudioKit.output = mixer
+        
+        sequencer = AKSequencer(filename: "4tracks")
+        sequencer.setLength(AKDuration(beats: 12))
+        sequencer.enableLooping()
+        // Set the instruments
+        sequencer.tracks[0].setMIDIOutput(piano1.midiIn)
+        sequencer.tracks[1].setMIDIOutput(piano2.midiIn)
+        sequencer.tracks[3].setMIDIOutput(piano3.midiIn)
+        sequencer.tracks[4].setMIDIOutput(piano4.midiIn)
+        
+        // Remove all previous sampler events
+        for track in sequencer.tracks {
+            track.clear()
+        }
+
+        AudioKit.start()
+    }
+    
+    func updateLoop() {
+        
+        var index = 1
+        
+        for (_, base) in BasesByParts {
+            if let base = base {
+                if base.name == "tone1" {
+                    sequencer.tracks[0].add(noteNumber: 62, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12+1 - index))
+                } else if base.name == "tone2" {
+                    sequencer.tracks[1].add(noteNumber: 60, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12+1 - index))
+                } else if base.name == "tone3" {
+                     sequencer.tracks[2].add(noteNumber: 58, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12+1 - index))
+                } else if base.name == "tone4" {
+                    sequencer.tracks[3].add(noteNumber: 56, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12+1 - index))
+                }
+            }
+           
+            index = index + 1
         }
     }
     

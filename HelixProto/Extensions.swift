@@ -16,3 +16,22 @@ extension CGPoint {
     }
 }
 
+extension SKSpriteNode {
+
+    // Simple press animation
+    public func playPressedAnimation() {
+        let scale = SKAction.scale(to: CGSize(width: self.size.width / CGFloat(1.2), height: self.size.height / CGFloat(1.2)), duration: 0.1)
+        let scaleBack = SKAction.scale(to: CGSize(width: self.size.width * CGFloat(1.0), height: self.size.height * CGFloat(1.0)), duration: 0.1)
+        let changeSprite: SKAction
+        if name! == "playButton" {
+            changeSprite = SKAction.setTexture(SKTexture(imageNamed: "stopButton"))
+        }
+        else {
+            changeSprite = SKAction.setTexture(SKTexture(imageNamed: "playButton"))
+        }
+        
+        let sequence = SKAction.sequence([scale, scaleBack, changeSprite])
+        self.run(sequence)
+        
+    }
+}
