@@ -1,0 +1,571 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		077FCA542030D11900C2B174 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FCA532030D11900C2B174 /* AppDelegate.swift */; };
+		077FCA5A2030D11900C2B174 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FCA592030D11900C2B174 /* GameScene.swift */; };
+		077FCA5C2030D11900C2B174 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FCA5B2030D11900C2B174 /* GameViewController.swift */; };
+		077FCA5F2030D11900C2B174 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 077FCA5D2030D11900C2B174 /* Main.storyboard */; };
+		077FCA612030D11900C2B174 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 077FCA602030D11900C2B174 /* Assets.xcassets */; };
+		077FCA642030D11900C2B174 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 077FCA622030D11900C2B174 /* LaunchScreen.storyboard */; };
+		077FCA6F2030D11900C2B174 /* HelixProtoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FCA6E2030D11900C2B174 /* HelixProtoTests.swift */; };
+		077FCA7A2030D11900C2B174 /* HelixProtoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FCA792030D11900C2B174 /* HelixProtoUITests.swift */; };
+		077FCA882030D14700C2B174 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FCA872030D14700C2B174 /* Extensions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		077FCA6B2030D11900C2B174 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 077FCA482030D11900C2B174 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 077FCA4F2030D11900C2B174;
+			remoteInfo = HelixProto;
+		};
+		077FCA762030D11900C2B174 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 077FCA482030D11900C2B174 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 077FCA4F2030D11900C2B174;
+			remoteInfo = HelixProto;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		077FCA502030D11900C2B174 /* HelixProto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelixProto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		077FCA532030D11900C2B174 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		077FCA592030D11900C2B174 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		077FCA5B2030D11900C2B174 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		077FCA5E2030D11900C2B174 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		077FCA602030D11900C2B174 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		077FCA632030D11900C2B174 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		077FCA652030D11900C2B174 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		077FCA6A2030D11900C2B174 /* HelixProtoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelixProtoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		077FCA6E2030D11900C2B174 /* HelixProtoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelixProtoTests.swift; sourceTree = "<group>"; };
+		077FCA702030D11900C2B174 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		077FCA752030D11900C2B174 /* HelixProtoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelixProtoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		077FCA792030D11900C2B174 /* HelixProtoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelixProtoUITests.swift; sourceTree = "<group>"; };
+		077FCA7B2030D11900C2B174 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		077FCA872030D14700C2B174 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		077FCA4D2030D11900C2B174 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		077FCA672030D11900C2B174 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		077FCA722030D11900C2B174 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		077FCA472030D11900C2B174 = {
+			isa = PBXGroup;
+			children = (
+				077FCA522030D11900C2B174 /* HelixProto */,
+				077FCA6D2030D11900C2B174 /* HelixProtoTests */,
+				077FCA782030D11900C2B174 /* HelixProtoUITests */,
+				077FCA512030D11900C2B174 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		077FCA512030D11900C2B174 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				077FCA502030D11900C2B174 /* HelixProto.app */,
+				077FCA6A2030D11900C2B174 /* HelixProtoTests.xctest */,
+				077FCA752030D11900C2B174 /* HelixProtoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		077FCA522030D11900C2B174 /* HelixProto */ = {
+			isa = PBXGroup;
+			children = (
+				077FCA532030D11900C2B174 /* AppDelegate.swift */,
+				077FCA592030D11900C2B174 /* GameScene.swift */,
+				077FCA872030D14700C2B174 /* Extensions.swift */,
+				077FCA5B2030D11900C2B174 /* GameViewController.swift */,
+				077FCA5D2030D11900C2B174 /* Main.storyboard */,
+				077FCA602030D11900C2B174 /* Assets.xcassets */,
+				077FCA622030D11900C2B174 /* LaunchScreen.storyboard */,
+				077FCA652030D11900C2B174 /* Info.plist */,
+			);
+			path = HelixProto;
+			sourceTree = "<group>";
+		};
+		077FCA6D2030D11900C2B174 /* HelixProtoTests */ = {
+			isa = PBXGroup;
+			children = (
+				077FCA6E2030D11900C2B174 /* HelixProtoTests.swift */,
+				077FCA702030D11900C2B174 /* Info.plist */,
+			);
+			path = HelixProtoTests;
+			sourceTree = "<group>";
+		};
+		077FCA782030D11900C2B174 /* HelixProtoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				077FCA792030D11900C2B174 /* HelixProtoUITests.swift */,
+				077FCA7B2030D11900C2B174 /* Info.plist */,
+			);
+			path = HelixProtoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		077FCA4F2030D11900C2B174 /* HelixProto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 077FCA7E2030D11900C2B174 /* Build configuration list for PBXNativeTarget "HelixProto" */;
+			buildPhases = (
+				077FCA4C2030D11900C2B174 /* Sources */,
+				077FCA4D2030D11900C2B174 /* Frameworks */,
+				077FCA4E2030D11900C2B174 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelixProto;
+			productName = HelixProto;
+			productReference = 077FCA502030D11900C2B174 /* HelixProto.app */;
+			productType = "com.apple.product-type.application";
+		};
+		077FCA692030D11900C2B174 /* HelixProtoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 077FCA812030D11900C2B174 /* Build configuration list for PBXNativeTarget "HelixProtoTests" */;
+			buildPhases = (
+				077FCA662030D11900C2B174 /* Sources */,
+				077FCA672030D11900C2B174 /* Frameworks */,
+				077FCA682030D11900C2B174 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				077FCA6C2030D11900C2B174 /* PBXTargetDependency */,
+			);
+			name = HelixProtoTests;
+			productName = HelixProtoTests;
+			productReference = 077FCA6A2030D11900C2B174 /* HelixProtoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		077FCA742030D11900C2B174 /* HelixProtoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 077FCA842030D11900C2B174 /* Build configuration list for PBXNativeTarget "HelixProtoUITests" */;
+			buildPhases = (
+				077FCA712030D11900C2B174 /* Sources */,
+				077FCA722030D11900C2B174 /* Frameworks */,
+				077FCA732030D11900C2B174 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				077FCA772030D11900C2B174 /* PBXTargetDependency */,
+			);
+			name = HelixProtoUITests;
+			productName = HelixProtoUITests;
+			productReference = 077FCA752030D11900C2B174 /* HelixProtoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		077FCA482030D11900C2B174 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Alexander Schülke";
+				TargetAttributes = {
+					077FCA4F2030D11900C2B174 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					077FCA692030D11900C2B174 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 077FCA4F2030D11900C2B174;
+					};
+					077FCA742030D11900C2B174 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 077FCA4F2030D11900C2B174;
+					};
+				};
+			};
+			buildConfigurationList = 077FCA4B2030D11900C2B174 /* Build configuration list for PBXProject "HelixProto" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 077FCA472030D11900C2B174;
+			productRefGroup = 077FCA512030D11900C2B174 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				077FCA4F2030D11900C2B174 /* HelixProto */,
+				077FCA692030D11900C2B174 /* HelixProtoTests */,
+				077FCA742030D11900C2B174 /* HelixProtoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		077FCA4E2030D11900C2B174 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				077FCA5F2030D11900C2B174 /* Main.storyboard in Resources */,
+				077FCA612030D11900C2B174 /* Assets.xcassets in Resources */,
+				077FCA642030D11900C2B174 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		077FCA682030D11900C2B174 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		077FCA732030D11900C2B174 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		077FCA4C2030D11900C2B174 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				077FCA5A2030D11900C2B174 /* GameScene.swift in Sources */,
+				077FCA5C2030D11900C2B174 /* GameViewController.swift in Sources */,
+				077FCA542030D11900C2B174 /* AppDelegate.swift in Sources */,
+				077FCA882030D14700C2B174 /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		077FCA662030D11900C2B174 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				077FCA6F2030D11900C2B174 /* HelixProtoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		077FCA712030D11900C2B174 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				077FCA7A2030D11900C2B174 /* HelixProtoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		077FCA6C2030D11900C2B174 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 077FCA4F2030D11900C2B174 /* HelixProto */;
+			targetProxy = 077FCA6B2030D11900C2B174 /* PBXContainerItemProxy */;
+		};
+		077FCA772030D11900C2B174 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 077FCA4F2030D11900C2B174 /* HelixProto */;
+			targetProxy = 077FCA762030D11900C2B174 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		077FCA5D2030D11900C2B174 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				077FCA5E2030D11900C2B174 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		077FCA622030D11900C2B174 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				077FCA632030D11900C2B174 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		077FCA7C2030D11900C2B174 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		077FCA7D2030D11900C2B174 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		077FCA7F2030D11900C2B174 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QUNH82DZ4W;
+				INFOPLIST_FILE = HelixProto/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = alexanderschuelke.HelixProto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		077FCA802030D11900C2B174 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QUNH82DZ4W;
+				INFOPLIST_FILE = HelixProto/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = alexanderschuelke.HelixProto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		077FCA822030D11900C2B174 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QUNH82DZ4W;
+				INFOPLIST_FILE = HelixProtoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = alexanderschuelke.HelixProtoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelixProto.app/HelixProto";
+			};
+			name = Debug;
+		};
+		077FCA832030D11900C2B174 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QUNH82DZ4W;
+				INFOPLIST_FILE = HelixProtoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = alexanderschuelke.HelixProtoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelixProto.app/HelixProto";
+			};
+			name = Release;
+		};
+		077FCA852030D11900C2B174 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QUNH82DZ4W;
+				INFOPLIST_FILE = HelixProtoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = alexanderschuelke.HelixProtoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HelixProto;
+			};
+			name = Debug;
+		};
+		077FCA862030D11900C2B174 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QUNH82DZ4W;
+				INFOPLIST_FILE = HelixProtoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = alexanderschuelke.HelixProtoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HelixProto;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		077FCA4B2030D11900C2B174 /* Build configuration list for PBXProject "HelixProto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				077FCA7C2030D11900C2B174 /* Debug */,
+				077FCA7D2030D11900C2B174 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		077FCA7E2030D11900C2B174 /* Build configuration list for PBXNativeTarget "HelixProto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				077FCA7F2030D11900C2B174 /* Debug */,
+				077FCA802030D11900C2B174 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		077FCA812030D11900C2B174 /* Build configuration list for PBXNativeTarget "HelixProtoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				077FCA822030D11900C2B174 /* Debug */,
+				077FCA832030D11900C2B174 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		077FCA842030D11900C2B174 /* Build configuration list for PBXNativeTarget "HelixProtoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				077FCA852030D11900C2B174 /* Debug */,
+				077FCA862030D11900C2B174 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 077FCA482030D11900C2B174 /* Project object */;
+}
