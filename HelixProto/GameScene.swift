@@ -134,6 +134,7 @@ class GameScene: SKScene {
                         basesOnDna.append(currentBase)
                         for (index, tuple) in BasesByParts.enumerated() {
                             if tuple.0 == nearest {
+                                cleanOldParts(from: currentBase)
                                 BasesByParts[index] = (nearest, currentBase)
                             }
                         }
@@ -159,6 +160,17 @@ class GameScene: SKScene {
             }
         }
         return false
+    }
+    
+    func cleanOldParts(from base: SKSpriteNode) {
+        for (index, tuple) in BasesByParts.enumerated() {
+            if base == BasesByParts[index].1 {
+                print("cleaned")
+                // Clean the part from base by reassigning nil as base
+                BasesByParts[index] = (tuple.0, nil)
+                return
+            }
+        }
     }
     
     // In this method it is set which base the user wants to move right now,
@@ -278,7 +290,10 @@ class GameScene: SKScene {
     }
     
     func updateLoop() {
-        
+        // Remove all previous sampler events
+        for track in sequencer.tracks {
+            track.clear()
+        }
         var index = 1
         
         for (_, base) in BasesByParts {
