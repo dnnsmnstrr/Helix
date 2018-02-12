@@ -128,7 +128,8 @@ class GameScene: SKScene {
         else if gestureRecognizer.state == .ended {
             if let currentBase = currentBase {
                 if let nearest = getNearestPart() {
-                    if nearest.position.x.distance(to: currentBase.position.x) < 100 {
+                    // Only assign base to position if base is near enough and part doesn't hold a base yet
+                    if nearest.position.x.distance(to: currentBase.position.x) < 100 && isPartEmpty(nearest){
                         currentBase.position = CGPoint(x: nearest.position.x + currentBase.frame.width / 24, y: nearest.position.y)
                         basesOnDna.append(currentBase)
                         for (index, tuple) in BasesByParts.enumerated() {
@@ -148,6 +149,16 @@ class GameScene: SKScene {
                 }
             }
         }
+    }
+    
+    // Return true when given part doesn't hold a base.
+    func isPartEmpty(_ part: SKSpriteNode) -> Bool {
+        for (index, tuple) in BasesByParts.enumerated() {
+            if part == BasesByParts[index].0 && BasesByParts[index].1 == nil {
+                return true
+            }
+        }
+        return false
     }
     
     // In this method it is set which base the user wants to move right now,
@@ -250,6 +261,7 @@ class GameScene: SKScene {
         
         sequencer = AKSequencer(filename: "4tracks")
         sequencer.setLength(AKDuration(beats: 12))
+        sequencer.setTempo(160)
         sequencer.enableLooping()
         // Set the instruments
         sequencer.tracks[0].setMIDIOutput(piano1.midiIn)
