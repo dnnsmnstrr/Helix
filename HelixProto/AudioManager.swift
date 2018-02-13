@@ -24,10 +24,10 @@ class AudioManager {
         
         // Load wav files into samplers
         do {
-            try sampler1.loadWav("cheeb-ch")
-            try sampler2.loadWav("cheeb-bd")
-            try sampler3.loadWav("cheeb-snr")
-            try sampler4.loadWav("cheeb-hat")
+            try sampler1.loadWav("cheeb-bd")
+            try sampler2.loadWav("cheeb-snr")
+            try sampler3.loadWav("cheeb-hat")
+            try sampler4.loadWav("cheeb-ch")
         } catch let error {
             print(error.localizedDescription)
         }
@@ -39,7 +39,7 @@ class AudioManager {
         // Basic setup
         sequencer = AKSequencer(filename: "4tracks")
         sequencer.setLength(AKDuration(beats: 12))
-        sequencer.setTempo(160)
+        sequencer.setTempo(200)
         sequencer.enableLooping()
         
         // Set the instruments
@@ -99,7 +99,20 @@ class AudioManager {
         }
     }
     
-    
+    public func playSample(baseName: String) {
+        switch baseName {
+        case "tone1":
+            sampler1.play(noteNumber: 62, velocity: 127, channel: 12)
+        case "tone2":
+            sampler2.play(noteNumber: 62, velocity: 127, channel: 12)
+        case "tone3":
+            sampler3.play(noteNumber: 62, velocity: 127, channel: 12)
+        case "tone4":
+            sampler4.play(noteNumber: 62, velocity: 127, channel: 12)
+        default:
+            return
+        }
+    }
 
     
 }

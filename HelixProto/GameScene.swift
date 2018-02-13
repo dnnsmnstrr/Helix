@@ -245,6 +245,9 @@ print(audioManager.sequencer.length)
                     }
                 }
                 if bases.values.contains(node) || basesOnDna.contains(node){
+                    if let name = node.name {
+                        audioManager.playSample(baseName: name)
+                    }
                     originalBasePosition = node.position
                     currentBase = node
                 } else {
