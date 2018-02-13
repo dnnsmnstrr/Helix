@@ -27,7 +27,8 @@ class GameScene: SKScene {
     // Currently moved base
     private var currentBase: SKSpriteNode?
     private var originalBasePosition: CGPoint?
-    
+
+    private var selectionFrame: SelectionFrame?
     
     var piano1 = AKMIDISampler()
     var piano2 = AKMIDISampler()
@@ -45,7 +46,6 @@ class GameScene: SKScene {
             part.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             parts.append(part)
             BasesByParts.append((part, nil))
-            
         }
         
         // Create the 4 bases available for the user
@@ -53,6 +53,7 @@ class GameScene: SKScene {
         bases[1] = SKSpriteNode(imageNamed: "base2")
         bases[2] = SKSpriteNode(imageNamed: "base3")
         bases[3] = SKSpriteNode(imageNamed: "base4")
+
         
         super.init(size: size)
     }
@@ -98,10 +99,11 @@ class GameScene: SKScene {
         playButton.position = CGPoint(x: self.frame.size.width / 1.58, y: self.frame.size.height / 7.7)
         playButton.scale(to: CGSize(width: playButton.size.width * CGFloat(1.5), height: playButton.size.height * CGFloat(1.5)))
         
+        
+        
         panRecognizer.addTarget(self, action: #selector(GameScene.drag(_:)))
         self.view!.addGestureRecognizer(panRecognizer)
-        
-        setupAudio()
+
         
     }
     
@@ -121,16 +123,39 @@ class GameScene: SKScene {
             guard let currentBase = currentBase else {
                 return
             }
+            if let nearest = getNearestPart() {
+                if let selectionFrame = self.selectionFrame {
+                    if nearest != selectionFrame.accordingPart {
+                        if !isPartEmpty(nearest) {
+                            removeSelectionFrame()
+                        }
+                        else {
+                            selectionFrame.position = CGPoint(x: 0, y: nearest.position.y - nearest.frame.height / 2)
+                        }
+                    }
+                }
+                else if isPartEmpty(nearest){
+                    selectionFrame = SelectionFrame(rectOfSize: CGSize(width: self.frame.size.width, height: nearest.frame.height))
+                    selectionFrame!.position = CGPoint(x: 0, y: nearest.position.y - nearest.frame.height / 2)
+                    addChild(selectionFrame!)
+                }
+            }
+            
             currentBase.position = CGPoint(x: currentBase.position.x + translation.x*2, y: currentBase.position.y - translation.y*2)
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.view)
         }
             // End of drag, decide wether to snap to the stride or return to original position
         else if gestureRecognizer.state == .ended {
             if let currentBase = currentBase {
+                if checkIfDeleted(currentBase) {
+                    return
+                }
                 if let nearest = getNearestPart() {
                     // Only assign base to position if base is near enough and part doesn't hold a base yet
-                    if nearest.position.x.distance(to: currentBase.position.x) < 100 && isPartEmpty(nearest){
-                        currentBase.position = CGPoint(x: nearest.position.x + currentBase.frame.width / 24, y: nearest.position.y)
+                    if isPartEmpty(nearest){
+                        let newPosition = CGPoint(x: nearest.position.x + currentBase.frame.width / 24, y: nearest.position.y)
+                        let snap = SKAction.move(to: newPosition, duration: 0.1)
+                        currentBase.run(snap)
                         basesOnDna.append(currentBase)
                         for (index, tuple) in BasesByParts.enumerated() {
                             if tuple.0 == nearest {
@@ -140,11 +165,13 @@ class GameScene: SKScene {
                         }
                         // Get next base of same type
                         reloadSample(for: currentBase)
+                        removeSelectionFrame()
                         return
                     }
                 }
                 // Move bases back to original position, because it could not snap with any DNA slot
                 if let originalBasePosition = self.originalBasePosition {
+                    removeSelectionFrame()
                     let snapBack = SKAction.move(to: originalBasePosition, duration: 0.3)
                     currentBase.run(snapBack)
                 }
@@ -154,7 +181,7 @@ class GameScene: SKScene {
     
     // Return true when given part doesn't hold a base.
     func isPartEmpty(_ part: SKSpriteNode) -> Bool {
-        for (index, tuple) in BasesByParts.enumerated() {
+        for (index, _) in BasesByParts.enumerated() {
             if part == BasesByParts[index].0 && BasesByParts[index].1 == nil {
                 return true
             }
@@ -165,12 +192,31 @@ class GameScene: SKScene {
     func cleanOldParts(from base: SKSpriteNode) {
         for (index, tuple) in BasesByParts.enumerated() {
             if base == BasesByParts[index].1 {
-                print("cleaned")
                 // Clean the part from base by reassigning nil as base
                 BasesByParts[index] = (tuple.0, nil)
                 return
             }
         }
+    }
+    
+    func checkIfDeleted(_ base: SKSpriteNode) -> Bool{
+        let oldAnchorPoint = base.anchorPoint
+        base.anchorPoint = CGPoint(x: 0, y: base.anchorPoint.y)
+        let leftMostPoint = base.position
+        base.anchorPoint = oldAnchorPoint
+        if (leftMostPoint.x < parts.first!.position.x - parts.first!.frame.size.width * 2) {
+            cleanOldParts(from: base)
+            basesOnDna.remove(at: basesOnDna.index(of: base)!)
+            let leaveScreen = SKAction.moveTo(x: base.position.x - base.frame.size.width * 2, duration: 0.5)
+            let remove = SKAction.run {
+                base.removeFromParent()
+            }
+            let sequence = SKAction.sequence([leaveScreen, remove])
+            base.run(sequence)
+            reloadSample(for: base)
+            return true
+        }
+        return false
     }
     
     // In this method it is set which base the user wants to move right now,
@@ -288,6 +334,14 @@ class GameScene: SKScene {
 
         AudioKit.start()
     }
+    
+    func removeSelectionFrame() {
+        if let selectionFrame = selectionFrame {
+            selectionFrame.removeFromParent()
+            self.selectionFrame = nil
+        }
+    }
+
     
     func updateLoop() {
         // Remove all previous sampler events
