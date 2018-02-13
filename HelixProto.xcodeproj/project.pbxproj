@@ -17,6 +17,8 @@
 		077FCA7A2030D11900C2B174 /* HelixProtoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FCA792030D11900C2B174 /* HelixProtoUITests.swift */; };
 		077FCA882030D14700C2B174 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FCA872030D14700C2B174 /* Extensions.swift */; };
 		07C101D52031E9C0008776D7 /* SelectionFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C101D42031E9C0008776D7 /* SelectionFrame.swift */; };
+		07C101D720335167008776D7 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C101D620335167008776D7 /* AudioManager.swift */; };
+		07C101D920335496008776D7 /* AudioManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C101D820335496008776D7 /* AudioManagerDelegate.swift */; };
 		07EDF3A12030D33F002DFD90 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EDF3A02030D33F002DFD90 /* AudioKit.framework */; };
 		07EDF3A22030D33F002DFD90 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07EDF3A02030D33F002DFD90 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07EDF3A52030D34C002DFD90 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EDF3A42030D34C002DFD90 /* AudioKitUI.framework */; };
@@ -75,6 +77,8 @@
 		077FCA7B2030D11900C2B174 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		077FCA872030D14700C2B174 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		07C101D42031E9C0008776D7 /* SelectionFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionFrame.swift; sourceTree = "<group>"; };
+		07C101D620335167008776D7 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		07C101D820335496008776D7 /* AudioManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerDelegate.swift; sourceTree = "<group>"; };
 		07EDF3A02030D33F002DFD90 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
 		07EDF3A42030D34C002DFD90 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKitUI.framework; sourceTree = "<group>"; };
 		07EDF3A82030D3DA002DFD90 /* 4tracks.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = 4tracks.mid; sourceTree = "<group>"; };
@@ -134,11 +138,13 @@
 		077FCA522030D11900C2B174 /* HelixProto */ = {
 			isa = PBXGroup;
 			children = (
+				07C101DB203355D1008776D7 /* Extensions */,
+				07C101DA203355C3008776D7 /* Protocols */,
 				07EDF3A72030D3B9002DFD90 /* Resources */,
 				077FCA532030D11900C2B174 /* AppDelegate.swift */,
 				077FCA592030D11900C2B174 /* GameScene.swift */,
+				07C101D620335167008776D7 /* AudioManager.swift */,
 				07C101D42031E9C0008776D7 /* SelectionFrame.swift */,
-				077FCA872030D14700C2B174 /* Extensions.swift */,
 				077FCA5B2030D11900C2B174 /* GameViewController.swift */,
 				077FCA5D2030D11900C2B174 /* Main.storyboard */,
 				077FCA602030D11900C2B174 /* Assets.xcassets */,
@@ -164,6 +170,22 @@
 				077FCA7B2030D11900C2B174 /* Info.plist */,
 			);
 			path = HelixProtoUITests;
+			sourceTree = "<group>";
+		};
+		07C101DA203355C3008776D7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				07C101D820335496008776D7 /* AudioManagerDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		07C101DB203355D1008776D7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				077FCA872030D14700C2B174 /* Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		07EDF3A72030D3B9002DFD90 /* Resources */ = {
@@ -327,6 +349,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07C101D920335496008776D7 /* AudioManagerDelegate.swift in Sources */,
+				07C101D720335167008776D7 /* AudioManager.swift in Sources */,
 				077FCA5A2030D11900C2B174 /* GameScene.swift in Sources */,
 				077FCA5C2030D11900C2B174 /* GameViewController.swift in Sources */,
 				077FCA542030D11900C2B174 /* AppDelegate.swift in Sources */,

@@ -37,12 +37,3 @@ extension SKSpriteNode {
 
 }
 
-extension SKNode {
-    var positionInScene:CGPoint? {
-        if let scene = scene, let parent = parent {
-            return parent.convert(position, to:scene)
-        } else {
-            return nil
-        }
-    }
-}

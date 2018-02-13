@@ -22,6 +22,8 @@ class GameScene: SKScene {
     // All DNA parts are listed here with according bases
     private var BasesByParts: [(SKSpriteNode, SKSpriteNode?)] = []
     
+    private let audioManager = AudioManager()
+    
     // For dragging bases
     private let panRecognizer = UIPanGestureRecognizer()
     // Currently moved base
@@ -29,14 +31,6 @@ class GameScene: SKScene {
     private var originalBasePosition: CGPoint?
 
     private var selectionFrame: SelectionFrame?
-    
-    var piano1 = AKMIDISampler()
-    var piano2 = AKMIDISampler()
-    var piano3 = AKMIDISampler()
-    var piano4 = AKMIDISampler()
-    
-    var bell = AKMIDISampler()
-    var sequencer = AKSequencer(filename: "4tracks")
     
     override init(size: CGSize) {
         // Create the one side of the DNA string.
@@ -104,7 +98,7 @@ class GameScene: SKScene {
         panRecognizer.addTarget(self, action: #selector(GameScene.drag(_:)))
         self.view!.addGestureRecognizer(panRecognizer)
 
-        
+        audioManager.delegate = self
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -231,14 +225,13 @@ class GameScene: SKScene {
                     if name == "playButton" {
                         node.playPressedAnimation()
                         node.name = "stopButton"
-                        updateLoop()
-                        sequencer.play()
+                        audioManager.play()
                     }
                     else if name == "stopButton"{
 
                         node.playPressedAnimation()
                         node.name = "playButton"
-                        sequencer.stop()
+                        audioManager.stop()
                     }
                 }
                 if bases.values.contains(node) || basesOnDna.contains(node){
@@ -301,70 +294,19 @@ class GameScene: SKScene {
         }
     }
     
-    private func setupAudio() {
-        
-        // Load wav files into samplers
-        do {
-            try piano1.loadWav("FM Piano")
-            try piano2.loadWav("FM Piano")
-            try piano3.loadWav("FM Piano")
-            try piano4.loadWav("FM Piano")
-            try bell.loadWav("Bell")
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
-        let mixer = AKMixer(piano1, piano2, piano3, piano4, bell)
-        AudioKit.output = mixer
-        
-        sequencer = AKSequencer(filename: "4tracks")
-        sequencer.setLength(AKDuration(beats: 12))
-        sequencer.setTempo(160)
-        sequencer.enableLooping()
-        // Set the instruments
-        sequencer.tracks[0].setMIDIOutput(piano1.midiIn)
-        sequencer.tracks[1].setMIDIOutput(piano2.midiIn)
-        sequencer.tracks[3].setMIDIOutput(piano3.midiIn)
-        sequencer.tracks[4].setMIDIOutput(piano4.midiIn)
-        
-        // Remove all previous sampler events
-        for track in sequencer.tracks {
-            track.clear()
-        }
-
-        AudioKit.start()
-    }
-    
     func removeSelectionFrame() {
         if let selectionFrame = selectionFrame {
             selectionFrame.removeFromParent()
             self.selectionFrame = nil
         }
     }
-
     
-    func updateLoop() {
-        // Remove all previous sampler events
-        for track in sequencer.tracks {
-            track.clear()
-        }
-        var index = 1
-        
-        for (_, base) in BasesByParts {
-            if let base = base {
-                if base.name == "tone1" {
-                    sequencer.tracks[0].add(noteNumber: 62, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12+1 - index))
-                } else if base.name == "tone2" {
-                    sequencer.tracks[1].add(noteNumber: 60, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12+1 - index))
-                } else if base.name == "tone3" {
-                     sequencer.tracks[2].add(noteNumber: 58, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12+1 - index))
-                } else if base.name == "tone4" {
-                    sequencer.tracks[3].add(noteNumber: 56, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12+1 - index))
-                }
-            }
-           
-            index = index + 1
-        }
+}
+
+extension GameScene : AudioManagerDelegate {
+    
+    public func getBasesByParts() -> [(SKSpriteNode, SKSpriteNode?)] {
+        return BasesByParts
     }
     
 }
