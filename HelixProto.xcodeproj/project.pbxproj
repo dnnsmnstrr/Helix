@@ -19,6 +19,10 @@
 		07C101D52031E9C0008776D7 /* SelectionFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C101D42031E9C0008776D7 /* SelectionFrame.swift */; };
 		07C101D720335167008776D7 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C101D620335167008776D7 /* AudioManager.swift */; };
 		07C101D920335496008776D7 /* AudioManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C101D820335496008776D7 /* AudioManagerDelegate.swift */; };
+		07C101DD203378B4008776D7 /* cheeb-bd.wav in Resources */ = {isa = PBXBuildFile; fileRef = 07C101DC203378B4008776D7 /* cheeb-bd.wav */; };
+		07C101DF203378C5008776D7 /* cheeb-ch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 07C101DE203378C5008776D7 /* cheeb-ch.wav */; };
+		07C101E1203378CB008776D7 /* cheeb-hat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 07C101E0203378CB008776D7 /* cheeb-hat.wav */; };
+		07C101E3203378D1008776D7 /* cheeb-snr.wav in Resources */ = {isa = PBXBuildFile; fileRef = 07C101E2203378D1008776D7 /* cheeb-snr.wav */; };
 		07EDF3A12030D33F002DFD90 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EDF3A02030D33F002DFD90 /* AudioKit.framework */; };
 		07EDF3A22030D33F002DFD90 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07EDF3A02030D33F002DFD90 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07EDF3A52030D34C002DFD90 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EDF3A42030D34C002DFD90 /* AudioKitUI.framework */; };
@@ -79,6 +83,10 @@
 		07C101D42031E9C0008776D7 /* SelectionFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionFrame.swift; sourceTree = "<group>"; };
 		07C101D620335167008776D7 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		07C101D820335496008776D7 /* AudioManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerDelegate.swift; sourceTree = "<group>"; };
+		07C101DC203378B4008776D7 /* cheeb-bd.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "cheeb-bd.wav"; sourceTree = "<group>"; };
+		07C101DE203378C5008776D7 /* cheeb-ch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "cheeb-ch.wav"; sourceTree = "<group>"; };
+		07C101E0203378CB008776D7 /* cheeb-hat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "cheeb-hat.wav"; sourceTree = "<group>"; };
+		07C101E2203378D1008776D7 /* cheeb-snr.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "cheeb-snr.wav"; sourceTree = "<group>"; };
 		07EDF3A02030D33F002DFD90 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
 		07EDF3A42030D34C002DFD90 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKitUI.framework; sourceTree = "<group>"; };
 		07EDF3A82030D3DA002DFD90 /* 4tracks.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = 4tracks.mid; sourceTree = "<group>"; };
@@ -202,6 +210,10 @@
 			children = (
 				07EDF3AF2030D51D002DFD90 /* FM Piano.wav */,
 				07EDF3AC2030D3F2002DFD90 /* Bell.wav */,
+				07C101DE203378C5008776D7 /* cheeb-ch.wav */,
+				07C101DC203378B4008776D7 /* cheeb-bd.wav */,
+				07C101E2203378D1008776D7 /* cheeb-snr.wav */,
+				07C101E0203378CB008776D7 /* cheeb-hat.wav */,
 			);
 			path = Samples;
 			sourceTree = "<group>";
@@ -319,12 +331,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07C101E1203378CB008776D7 /* cheeb-hat.wav in Resources */,
 				07EDF3AE2030D3F2002DFD90 /* Bell.wav in Resources */,
+				07C101E3203378D1008776D7 /* cheeb-snr.wav in Resources */,
 				07EDF3B02030D51D002DFD90 /* FM Piano.wav in Resources */,
 				077FCA5F2030D11900C2B174 /* Main.storyboard in Resources */,
 				077FCA612030D11900C2B174 /* Assets.xcassets in Resources */,
 				077FCA642030D11900C2B174 /* LaunchScreen.storyboard in Resources */,
+				07C101DD203378B4008776D7 /* cheeb-bd.wav in Resources */,
 				07EDF3A92030D3DA002DFD90 /* 4tracks.mid in Resources */,
+				07C101DF203378C5008776D7 /* cheeb-ch.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

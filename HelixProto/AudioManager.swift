@@ -11,23 +11,23 @@ import AudioKit
 
 class AudioManager {
     
-    var delegate: AudioManagerDelegate?
-    var sequencer = AKSequencer(filename: "4tracks")
+    public var delegate: AudioManagerDelegate?
+    public  var sequencer = AKSequencer(filename: "4tracks")
     
     // The interfaces to control the wav datas via MIDI
-    var sampler1 = AKMIDISampler()
-    var sampler2 = AKMIDISampler()
-    var sampler3 = AKMIDISampler()
-    var sampler4 = AKMIDISampler()
+    private var sampler1 = AKMIDISampler()
+    private var sampler2 = AKMIDISampler()
+    private var sampler3 = AKMIDISampler()
+    private var sampler4 = AKMIDISampler()
 
     public init() {
         
         // Load wav files into samplers
         do {
-            try sampler1.loadWav("FM Piano")
-            try sampler2.loadWav("FM Piano")
-            try sampler3.loadWav("FM Piano")
-            try sampler4.loadWav("FM Piano")
+            try sampler1.loadWav("cheeb-ch")
+            try sampler2.loadWav("cheeb-bd")
+            try sampler3.loadWav("cheeb-snr")
+            try sampler4.loadWav("cheeb-hat")
         } catch let error {
             print(error.localizedDescription)
         }
@@ -45,8 +45,8 @@ class AudioManager {
         // Set the instruments
         sequencer.tracks[0].setMIDIOutput(sampler1.midiIn)
         sequencer.tracks[1].setMIDIOutput(sampler2.midiIn)
-        sequencer.tracks[3].setMIDIOutput(sampler3.midiIn)
-        sequencer.tracks[4].setMIDIOutput(sampler4.midiIn)
+        sequencer.tracks[2].setMIDIOutput(sampler3.midiIn)
+        sequencer.tracks[3].setMIDIOutput(sampler4.midiIn)
         
         // Remove all previous sampler events
         for track in sequencer.tracks {
@@ -79,25 +79,26 @@ class AudioManager {
         }
         
         // Index takes care of correct beat position and length while looping
-        var index = 1
+        var index = 0
         
         // Check for each DNA part if there is a base assigned to it. If a base was assigned, determine used sampler by
         // the base's name.
         for (_, base) in basesByParts {
             if let base = base {
                 if base.name == "tone1" {
-                    sequencer.tracks[0].add(noteNumber: 62, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12+1 - index))
+                    sequencer.tracks[0].add(noteNumber: 62, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12 - index))
                 } else if base.name == "tone2" {
-                    sequencer.tracks[1].add(noteNumber: 60, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12+1 - index))
+                    sequencer.tracks[1].add(noteNumber: 60, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12 - index))
                 } else if base.name == "tone3" {
-                    sequencer.tracks[2].add(noteNumber: 58, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12+1 - index))
+                    sequencer.tracks[2].add(noteNumber: 58, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12 - index))
                 } else if base.name == "tone4" {
-                    sequencer.tracks[3].add(noteNumber: 56, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12+1 - index))
+                    sequencer.tracks[3].add(noteNumber: 56, velocity: 127, position: AKDuration(beats: Double(index)), duration: AKDuration(beats: 12 - index))
                 }
             }
             index = index + 1
         }
     }
+    
     
 
     

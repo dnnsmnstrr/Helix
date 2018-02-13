@@ -12,7 +12,7 @@ import AudioKit
 
 class GameScene: SKScene {
     
-    private var background = SKSpriteNode(imageNamed: "background")
+    private var background = SKSpriteNode(imageNamed: "alt_background")
     // The parts represent the individual pieces of the DNA. Each part can hold a tone.
     private var parts: [SKSpriteNode] = []
     // The bases that are available for the user on the right of the screen
@@ -32,10 +32,12 @@ class GameScene: SKScene {
 
     private var selectionFrame: SelectionFrame?
     
+    private var currentSequencerPosition = -1
+    
     override init(size: CGSize) {
         // Create the one side of the DNA string.
         for index in 0...11 {
-            let part = SKSpriteNode(imageNamed: "stridepart")
+            let part = SKSpriteNode(imageNamed: "alt_stridepart")
             part.zPosition = 0
             part.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             parts.append(part)
@@ -43,10 +45,10 @@ class GameScene: SKScene {
         }
         
         // Create the 4 bases available for the user
-        bases[0] = SKSpriteNode(imageNamed: "base1")
-        bases[1] = SKSpriteNode(imageNamed: "base2")
-        bases[2] = SKSpriteNode(imageNamed: "base3")
-        bases[3] = SKSpriteNode(imageNamed: "base4")
+        bases[0] = SKSpriteNode(imageNamed: "alt_base1")
+        bases[1] = SKSpriteNode(imageNamed: "alt_base2")
+        bases[2] = SKSpriteNode(imageNamed: "alt_base3")
+        bases[3] = SKSpriteNode(imageNamed: "alt_base4")
 
         
         super.init(size: size)
@@ -103,7 +105,15 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        
+        let newSequencerPosition = Int(audioManager.sequencer.currentRelativePosition.beats)
+print(audioManager.sequencer.length)
+        if currentSequencerPosition != newSequencerPosition && audioManager.sequencer.isPlaying {
 
+                    print(newSequencerPosition)
+            highlightBase()
+        }
+       
     }
     
     // Gets called by the UIPanGestureRecognizer.
@@ -246,6 +256,7 @@ class GameScene: SKScene {
         }
     }
     
+    
     // This method checks all DNA parts to return the nearest one to the currentBase
     private func getNearestPart() -> SKSpriteNode? {
         if let currentBase = currentBase {
@@ -270,15 +281,15 @@ class GameScene: SKScene {
             var newBase: SKSpriteNode
             switch position {
             case 0:
-                newBase = SKSpriteNode(imageNamed: "base1")
+                newBase = SKSpriteNode(imageNamed: "alt_base1")
             case 1:
-                newBase = SKSpriteNode(imageNamed: "base2")
+                newBase = SKSpriteNode(imageNamed: "alt_base2")
             case 2:
-                newBase = SKSpriteNode(imageNamed: "base3")
+                newBase = SKSpriteNode(imageNamed: "alt_base3")
             case 3:
-                newBase = SKSpriteNode(imageNamed: "base4")
+                newBase = SKSpriteNode(imageNamed: "alt_base4")
             default:
-                newBase = SKSpriteNode(imageNamed: "base1")
+                newBase = SKSpriteNode(imageNamed: "alt_base1")
             }
             bases[position] = newBase
             newBase.name = "tone\(position+1)"
@@ -298,6 +309,27 @@ class GameScene: SKScene {
         if let selectionFrame = selectionFrame {
             selectionFrame.removeFromParent()
             self.selectionFrame = nil
+        }
+    }
+    
+    func highlightBase() {
+        
+        var newSequencerPosition = Int(audioManager.sequencer.currentRelativePosition.beats)
+        
+
+        let currentPart = parts[newSequencerPosition]
+
+        for (part, base) in BasesByParts {
+            if part == currentPart {
+                if let base = base {
+                    base.alpha = 0.7
+                }
+            }
+            else {
+                if let base = base {
+                    base.alpha = 1
+                }
+            }
         }
     }
     

@@ -15,7 +15,6 @@ class SelectionFrame: SKShapeNode {
     
     init(rectOfSize: CGSize) {
         
-        
         super.init()
         self.fillColor = SKColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.15)
         self.strokeColor = SKColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.10)
